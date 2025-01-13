@@ -88,7 +88,7 @@ const Gneratae = () => {
           <input
             type="text"
             placeholder="Enter a topic..."
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 text-black border rounded"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
           />
