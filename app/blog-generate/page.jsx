@@ -1,15 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import { Client, Databases } from 'appwrite';
+import React, { useState } from "react";
+import { ID } from "appwrite";
+import databases from "../../appwrite/database";
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// const client = new Client()
-//   .setEndpoint('https://cloud.appwrite.io/v1')
-//   .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID);
-
-// const databases = new Databases(client);
-// const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID;
-// const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
+const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID;
+const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
 
 const Generate = () => {
   const [topic, setTopic] = useState("");
@@ -40,7 +37,30 @@ const Generate = () => {
         generationConfig,
         history: [],
       });
-      const result = await chatSession.sendMessage(`Topic: ${topic}, Style: ${style}`);
+      const result = await chatSession.sendMessage(
+        `Topic: ${topic}, Style: ${style}`
+      );
+      const blogObject = {
+        title: topic,
+        content: result.response.text(),
+        style: style,
+      };
+      //
+      const promise = databases.createDocument(
+        databaseId,
+        collectionId,
+        ID.unique(),
+        blogObject
+      );
+
+      promise.then(
+        function (response) {
+          console.log(response);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
       setBlogContent(result.response.text());
     } catch (error) {
       console.error("Error generating blog:", error);
@@ -56,7 +76,9 @@ const Generate = () => {
   return (
     <section className="py-16 h-auto">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-white text-center mb-6">Generate Your Blog</h2>
+        <h2 className="text-3xl font-bold text-white text-center mb-6">
+          Generate Your Blog
+        </h2>
         <div className="space-y-4">
           <input
             type="text"
@@ -102,7 +124,9 @@ const Generate = () => {
                 )}
               </div>
             ) : (
-              <p className='h-[187px]'>Your generated blog will appear here...</p>
+              <p className="h-[187px]">
+                Your generated blog will appear here...
+              </p>
             )}
           </div>
         </div>

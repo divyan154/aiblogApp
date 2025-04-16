@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Client, Databases } from "appwrite";
+import databases from "../appwrite/database";
 
-// Initialize Appwrite client
-const client = new Client()
-  .setEndpoint("https://cloud.appwrite.io/v1") // Replace with your Appwrite endpoint
-  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID); // Replace with your Appwrite project ID
-
-const databases = new Databases(client);
 const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
 const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID; // Replace with your Blogs collection ID
 const truncateText = (text, maxLength) => {
@@ -29,7 +23,7 @@ const PreviewBlogs = () => {
           databaseId,
           collectionId
         );
-
+        console.log(response);
         // Set the blogs data in state
         setBlogs(response.documents);
       } catch (error) {
@@ -70,9 +64,6 @@ const PreviewBlogs = () => {
                 </p>
                 <p className="mt-4 text-sm text-gray-500">
                   Style: {blog.style}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Created At: {blog.createdAt}
                 </p>
               </div>
             ))
