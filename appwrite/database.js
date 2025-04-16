@@ -1,8 +1,10 @@
-import { Client, Databases } from 'appwrite';
+import { Client, Databases } from "appwrite";
 
 const client = new Client()
-  .setEndpoint('https://[YOUR_APPWRITE_ENDPOINT]') // Replace with your Appwrite endpoint
-  .setProject('[YOUR_PROJECT_ID]'); // Replace with your Appwrite project ID
+  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID);
 
 const databases = new Databases(client);
-const collectionId = '[YOUR_COLLECTION_ID]'; // Replace with your Blogs collection ID
+const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID;
+const databaseId = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID;
+// module.exports = { collectionId, databaseId };

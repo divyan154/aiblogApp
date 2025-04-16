@@ -43,7 +43,7 @@ const Navbar = () => {
         />
       </svg>
     </button>
-
+{/* conosle.log("Helolo ${name}") */}
     {/* Navigation Links */}
     <nav
       className={`${

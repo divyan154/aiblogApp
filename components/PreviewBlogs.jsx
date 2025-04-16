@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Client, Databases } from "appwrite";
 
 // Initialize Appwrite client
@@ -24,7 +25,10 @@ const PreviewBlogs = () => {
         console.log("Collection ID:", collectionId);
 
         // Fetch all documents from the Blogs collection
-        const response = await databases.listDocuments(databaseId, collectionId);
+        const response = await databases.listDocuments(
+          databaseId,
+          collectionId
+        );
 
         // Set the blogs data in state
         setBlogs(response.documents);
@@ -44,30 +48,38 @@ const PreviewBlogs = () => {
 
   return (
     <section className="py-16">
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="text-4xl font-bold text-center mb-10">All Blogs</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.length === 0 ? (
-          <p className="text-center col-span-full text-gray-500">No blogs available.</p>
-        ) : (
-          blogs.map((blog) => (
-            <div
-              key={blog.$id}
-              className="p-6 bg-white shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-semibold text-gray-800 mb-2">{blog.title}</h3>
-              <p className="mt-2 text-gray-700 text-sm">
-                {truncateText(blog.content, 150)} {/* Truncate to 150 characters */}
-              </p>
-              <p className="mt-4 text-sm text-gray-500">Style: {blog.style}</p>
-              <p className="text-sm text-gray-500">Created At: {blog.createdAt}</p>
-            </div>
-          ))
-        )}
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-10">All Blogs</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.length === 0 ? (
+            <p className="text-center col-span-full text-gray-500">
+              No blogs available.
+            </p>
+          ) : (
+            blogs.map((blog) => (
+              <div
+                key={blog.$id}
+                className="p-6 bg-white shadow-md rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg"
+              >
+                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+                  {blog.title}
+                </h3>
+                <p className="mt-2 text-gray-700 text-sm">
+                  {truncateText(blog.content, 150)}{" "}
+                  {/* Truncate to 150 characters */}
+                </p>
+                <p className="mt-4 text-sm text-gray-500">
+                  Style: {blog.style}
+                </p>
+                <p className="text-sm text-gray-500">
+                  Created At: {blog.createdAt}
+                </p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
-  </section>
-  
+    </section>
   );
 };
 
