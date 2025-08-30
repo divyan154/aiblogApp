@@ -58,7 +58,7 @@ This app allows users to create, edit, and save blogs effortlessly using **Googl
 
 
 ![Homepage](./screenshots/home.png)  
-![Editor](./screenshots/editor.png)  
+![Generate](./screenshots/generateBlog.png)  
 
 ---
 
