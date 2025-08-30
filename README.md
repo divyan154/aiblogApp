@@ -7,10 +7,10 @@ A modern AI-powered blogging platform built with Next.js, Appwrite, and Tailwind
 ■ Persistent Storage: Blogs stored in Appwrite for seamless data management.
 ■ Modern UI: Responsive design using Tailwind CSS.
 ## Tech Stack
-Frontend: Next.js, Tailwind CSS
-Backend/Database: Appwrite
-Authentication: Clerk
-AI Integration: Gemini API
+Frontend: Next.js, Tailwind CSS 
+Backend/Database: Appwrite 
+Authentication: Clerk 
+AI Integration: Gemini API 
 ## Installation
 1. Clone the repository:
  git clone https://github.com/yourusername/ai-blog-app.git
