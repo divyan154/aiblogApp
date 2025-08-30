@@ -29,3 +29,24 @@ AI Integration: Gemini API
 Add screenshots of your app here:
 ![Homepage](./screenshots/home.png)
 ![Editor](./screenshots/editor.png)
+
+
+## Future Work
+
+■ Server-Side Rendering (SSR) for improved SEO and faster initial load.
+
+■ Internationalization (i18n) to support multi-language blogs.
+
+■ Categories & Tags for better content organization.
+
+■ Image Uploads with CDN integration.
+
+■ Social Sharing to boost engagement.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
